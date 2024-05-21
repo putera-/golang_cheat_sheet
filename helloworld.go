@@ -106,4 +106,67 @@ func main() {
 
 	fmt.Println(iniArray)
 	fmt.Println(iniSlice)
+
+	fmt.Println("MAP =============")
+
+	var person map[string]string = map[string]string{}
+	person["name"] = "Putera"
+	person["gender"] = "male"
+
+	person2 := map[string]string{
+		"name":   "Putera",
+		"gender": "male",
+	}
+
+	fmt.Println(person)
+	fmt.Println(person2)
+	delete(person2, "gender")
+	fmt.Println(person2)
+
+	person3 := make(map[string]string)
+	person3["name"] = "dede"
+	person3["gender"] = "female"
+
+	fmt.Println(person3)
+
+	person4 := make(map[string]interface{})
+	person4["name"] = "dede"
+	person4["gender"] = "female"
+	person4["age"] = 34
+
+	fmt.Println(person4)
+
+	name := "putera"
+
+	if name == "putera" {
+		fmt.Println(name)
+	}
+
+	if name == "budi" {
+		fmt.Println(name)
+	} else {
+		fmt.Println("bukan budi")
+	}
+
+	if length := len(name); length > 5 {
+		fmt.Println("nama terlalu panjang")
+	} else {
+		fmt.Println("nama tidak terlalu panjang")
+	}
+
+	switch name {
+	case "putera":
+		fmt.Println("Hello Putera")
+	case "joko":
+		fmt.Println("Hello Joko")
+	default:
+		fmt.Println("kamu siapa")
+	}
+
+	switch length := len(name); length > 5 {
+	case true:
+		fmt.Println("nama terlalu panjang")
+	case false:
+		fmt.Println("nama tidak terlalu panjang")
+	}
 }
