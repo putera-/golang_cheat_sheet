@@ -1,6 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
+
+// func getHello(name string) string {
+// 	return "Hello " + name
+// }
+
+func getGoodbye(name string) string {
+	return "Goodbye " + name
+}
 
 func main() {
 	fmt.Println(string("test"[1]))
@@ -169,4 +180,106 @@ func main() {
 	case false:
 		fmt.Println("nama tidak terlalu panjang")
 	}
+
+	counter := 1
+
+	for counter <= 10 {
+		fmt.Println(counter)
+		counter++
+	}
+
+	for i := 0; i < 10; i++ {
+		fmt.Println(i)
+	}
+
+	_names := []string{"Uda", "Putera", "Ganteng"}
+	for i := 0; i < len(_names); i++ {
+		fmt.Println(_names[i])
+	}
+
+	for i, name := range _names {
+		fmt.Println(i, name)
+	}
+
+	for _, name := range _names {
+		fmt.Println(name)
+	}
+
+	getHello := func(name string) string {
+		return "Hello bro " + name
+	}
+
+	fmt.Println(getHello("Putera"))
+
+	getFullName := func() (string, string) {
+		return "uda", "Putera"
+	}
+
+	firstname, lastname := getFullName()
+	fmt.Println(firstname, lastname)
+
+	getFullName2 := func() (string, string) {
+		return "uda", "Putera"
+	}
+
+	firstname2, _ := getFullName2()
+	fmt.Println(firstname2)
+
+	getFullName3 := func() (firstname2, lastname2 string) {
+		firstname2 = "Uda Uda Uda"
+		// lastname2 = "Putera"
+		// return firstname2, lastname2
+		return firstname2, lastname2
+	}
+
+	a, b := getFullName3()
+	fmt.Println(a, b)
+
+	sumAll := func(numbers ...int) int {
+		total := 0
+
+		for _, number := range numbers {
+			total += number
+		}
+
+		return total
+	}
+
+	// fmt.Println(sumAll(1, 2, 7, 7))
+	numbers := []int{1, 2, 7, 7}
+	fmt.Println(sumAll(numbers...))
+
+	goodbye := getGoodbye
+	fmt.Println(goodbye("Putera"))
+
+	// =============
+	sayHelloFilter := func(name string, filter func(string) string) string {
+		filteredName := filter(name)
+		return "Hello " + filteredName
+	}
+	spanFilter := func(name string) string {
+		if strings.ToLower(name) == "anjing" {
+			return "..."
+		} else {
+			return name
+		}
+	}
+
+	fmt.Println(sayHelloFilter("Dog", spanFilter))
+	// =============
+	type Filter func(string) string
+
+	sayHelloFilter2 := func(name string, filter Filter) string {
+		filteredName := filter(name)
+		return "Hello " + filteredName
+	}
+	spanFilter2 := func(name string) string {
+		if strings.ToLower(name) == "anjing" {
+			return "..."
+		} else {
+			return name
+		}
+	}
+
+	fmt.Println(sayHelloFilter2("Dog", spanFilter2))
 }
